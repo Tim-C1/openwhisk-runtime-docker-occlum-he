@@ -16,11 +16,11 @@
 #
 
 # Dockerfile for example whisk docker action
-FROM dockerskeleton
+FROM occlum-he-base
 
 ENV FLASK_PROXY_PORT 8080
 
-ADD --chmod=666 exec /action
+ADD exec /action
 
 WORKDIR /actionProxy
 

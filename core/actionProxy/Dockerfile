@@ -19,11 +19,11 @@
 FROM occlum/hyperenclave:0.27.10-hypermode-1.3.0-ubuntu20.04
 
 # Upgrade and install basic Python dependencies.
-RUN apt update && apt upgrade \
+RUN apt update \
   && apt install libbz2-dev g++ linux-libc-dev \
   && update-ca-certificates \
   && pip install --upgrade pip setuptools six \
-  && pip install --no-cache-dir gevent==23.9.1 flask==3.0.0 greenlet==3.0.0 \
+  && pip install --no-cache-dir gevent==23.9.1 flask==3.0.0 greenlet==3.0.0
 
 ENV FLASK_PROXY_PORT 8080
 
