@@ -16,16 +16,14 @@
 #
 
 # Dockerfile for docker skeleton (useful for running blackbox binaries, scripts, or Python 3 actions) .
-FROM python:3.11-alpine
+FROM occlum/hyperenclave:0.27.10-hypermode-1.3.0-ubuntu20.04
 
 # Upgrade and install basic Python dependencies.
-RUN apk upgrade --update \
-  && apk add --no-cache bash perl jq zip git curl wget openssl ca-certificates sed openssh-client \
+RUN apt update && apt upgrade \
+  && apt install libbz2-dev g++ linux-libc-dev \
   && update-ca-certificates \
-  && apk add --no-cache --virtual .build-deps bzip2-dev g++ libc-dev \
   && pip install --upgrade pip setuptools six \
-  && pip install --no-cache-dir gevent==23.9.1 flask==3.0.0 greenlet==3.0.0\
-  && apk del .build-deps
+  && pip install --no-cache-dir gevent==23.9.1 flask==3.0.0 greenlet==3.0.0 \
 
 ENV FLASK_PROXY_PORT 8080
 

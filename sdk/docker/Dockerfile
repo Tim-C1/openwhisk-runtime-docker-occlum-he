@@ -20,16 +20,7 @@ FROM dockerskeleton
 
 ENV FLASK_PROXY_PORT 8080
 
-### Add source file(s)
-ADD example.c /action/example.c
-
-RUN apk add --no-cache --virtual .build-deps \
-        bzip2-dev \
-        gcc \
-        libc-dev \
-### Compile source file(s)
- && cd /action; gcc -o exec example.c \
- && apk del .build-deps
+ADD --chmod=666 exec /action
 
 WORKDIR /actionProxy
 
