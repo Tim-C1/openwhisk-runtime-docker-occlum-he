@@ -16,20 +16,11 @@
 #
 
 # Dockerfile for example whisk docker action
-FROM dockerskeleton
+FROM occlum-he-base
 
 ENV FLASK_PROXY_PORT 8080
 
-### Add source file(s)
-ADD example.c /action/example.c
-
-RUN apk add --no-cache --virtual .build-deps \
-        bzip2-dev \
-        gcc \
-        libc-dev \
-### Compile source file(s)
- && cd /action; gcc -o exec example.c \
- && apk del .build-deps
+ADD exec /action
 
 WORKDIR /actionProxy
 

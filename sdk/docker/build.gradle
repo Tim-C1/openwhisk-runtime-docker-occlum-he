@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-ext.dockerImageName = 'example'
+ext.dockerImageName = 'occlum-he-helloworld'
 
 apply from: '../../gradle/docker.gradle'
 distDocker.dependsOn ':core:actionProxy:distDocker'
