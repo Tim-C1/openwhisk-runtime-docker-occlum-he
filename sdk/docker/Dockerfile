@@ -20,7 +20,16 @@ FROM occlum-he-base
 
 ENV FLASK_PROXY_PORT 8080
 
-ADD exec /action
+### Add source file(s)
+# ADD example.c /action/example.c
+ADD exec /action/exec
+
+# RUN apk add --no-cache --virtual .build-deps \
+#         bzip2-dev \
+#         gcc \
+#         libc-dev \
+### Compile source file(s)
+# RUN cd /action; gcc -o exec example.c
 
 WORKDIR /actionProxy
 

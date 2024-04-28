@@ -19,9 +19,18 @@
 FROM occlum/hyperenclave:0.27.10-hypermode-1.3.0-ubuntu20.04
 
 # Upgrade and install basic Python dependencies.
-RUN apt update \
-  && apt install libbz2-dev g++ linux-libc-dev \
+# RUN apk upgrade --update \
+#   && apk add --no-cache bash perl jq zip git curl wget openssl ca-certificates sed openssh-client \
+#   && update-ca-certificates \
+#   && apk add --no-cache --virtual .build-deps bzip2-dev g++ libc-dev \
+#   && pip install --upgrade pip setuptools six \
+#   && pip install --no-cache-dir gevent==23.9.1 flask==3.0.0 greenlet==3.0.0\
+#   && apk del .build-deps
+RUN apt update -y && apt upgrade -y \
+  && apt install bash perl jq zip git curl wget openssl ca-certificates sed openssh-client -y \
   && update-ca-certificates \
+  && apt install bzip2 libbz2-dev g++ linux-libc-dev gcc -y \
+  && apt install python3 python-is-python3 python3-pip -y \
   && pip install --upgrade pip setuptools six \
   && pip install --no-cache-dir gevent==23.9.1 flask==3.0.0 greenlet==3.0.0
 

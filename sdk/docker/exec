@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/bash
 target='/root/occlum/demos/hello_c/hello_world'
 occlum_instance='/root/occlum/demos/hello_c/occlum_instance'
 
@@ -17,3 +17,4 @@ else
 fi
 
 occlum run /bin/hello_world
+echo '{"msg": "test succuess"}'
