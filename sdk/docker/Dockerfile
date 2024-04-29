@@ -21,15 +21,16 @@ FROM occlum-he-base
 ENV FLASK_PROXY_PORT 8080
 
 ### Add source file(s)
-# ADD example.c /action/example.c
+ADD print_json.c /root/occlum/demos/hello_c
 ADD exec /action/exec
 
-# RUN apk add --no-cache --virtual .build-deps \
-#         bzip2-dev \
-#         gcc \
-#         libc-dev \
-### Compile source file(s)
-# RUN cd /action; gcc -o exec example.c
+RUN cd /root/occlum/demos/hello_c \
+  && occlum-gcc -o hello_world print_json.c \
+  && mkdir occlum_instance \
+  && cd occlum_instance \
+  && occlum init \
+  && cp ../hello_world image/bin/ \
+  && occlum build
 
 WORKDIR /actionProxy
 

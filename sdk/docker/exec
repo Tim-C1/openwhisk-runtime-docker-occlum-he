@@ -1,20 +1,22 @@
 #!/usr/bin/bash
-target='/root/occlum/demos/hello_c/hello_world'
-occlum_instance='/root/occlum/demos/hello_c/occlum_instance'
-
-cd /root/occlum/demos/hello_c
-if [ ! -f "$target" ]; then
-	occlum-gcc -o hello_world hello_world.c
-fi
-
-if [ ! -d "$occlum_instance" ]; then
-	mkdir occlum_instance && cd occlum_instance
-	occlum init
-	cp ../hello_world image/bin/
-	occlum build
-else
-	cd occlum_instance
-fi
-
+# target='/root/occlum/demos/hello_c/hello_world'
+# occlum_instance='/root/occlum/demos/hello_c/occlum_instance'
+# 
+# cd /root/occlum/demos/hello_c
+# if [ ! -f "$target" ]; then
+# 	occlum-gcc -o hello_world print_json.c
+# fi
+# 
+# if [ ! -d "$occlum_instance" ]; then
+# 	mkdir occlum_instance && cd occlum_instance
+# 	occlum init
+# 	cp ../hello_world image/bin/
+# 	occlum build
+# else
+# 	cd occlum_instance
+# fi
+# 
+# occlum run /bin/hello_world
+# echo '{"msg": "dasdjasldasjdasjldas"}'
+cd /root/occlum/demos/hello_c/occlum_instance
 occlum run /bin/hello_world
-echo '{"msg": "test succuess"}'
