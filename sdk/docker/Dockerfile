@@ -19,6 +19,7 @@
 FROM occlum-he-base
 
 ENV FLASK_PROXY_PORT 8080
+ENV SGX_MODE "HYPER"
 
 ### Add source file(s)
 ADD print_json.c /root/occlum/demos/hello_c
