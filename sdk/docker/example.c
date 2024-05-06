@@ -27,8 +27,6 @@
  * which represents the result of the action.
  */
 
-int main(int argc, char *argv[]) {
-    printf("This is an example log message from an arbitrary C program!\n");
-    printf("{ \"msg\": \"Hello from arbitrary C program!\", \"args\": %s }",
-           (argc == 1) ? "undefined" : argv[1]);
+int main() {
+    printf("{ \"msg\": \"Hello from arbitrary C program!\" }");
 }

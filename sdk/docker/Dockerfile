@@ -22,14 +22,12 @@ ENV FLASK_PROXY_PORT 8080
 
 ### Add source file(s)
 ADD example.c /action/example.c
+ADD exec /action/exec
 
 RUN apk add --no-cache --virtual .build-deps \
         bzip2-dev \
         gcc \
-        libc-dev \
-### Compile source file(s)
- && cd /action; gcc -o exec example.c \
- && apk del .build-deps
+        libc-dev
 
 WORKDIR /actionProxy
 
