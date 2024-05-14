@@ -16,20 +16,51 @@
 #
 
 # Dockerfile for example whisk docker action
-FROM dockerskeleton
+FROM leave011/openwhisk-test:latest
 
 ENV FLASK_PROXY_PORT 8080
+ENV SGX_MODE "HYPER"
 
-### Add source file(s)
-ADD example.c /action/example.c
+RUN mkdir /root/occlum/demos/benchmark
 
-RUN apk add --no-cache --virtual .build-deps \
-        bzip2-dev \
-        gcc \
-        libc-dev \
-### Compile source file(s)
- && cd /action; gcc -o exec example.c \
- && apk del .build-deps
+ADD exec /action/exec
+
+ADD python/bfs /root/occlum/demos/python/benchmark/bfs
+# ADD python/compress /root/occlum/demos/python/benchmark/compress
+ADD python/dynamic-html /root/occlum/demos/python/benchmark/dynamic-html
+ADD python/mst /root/occlum/demos/python/benchmark/mst
+ADD python/dfs /root/occlum/demos/python/benchmark/dfs
+ADD python/pagerank /root/occlum/demos/python/benchmark/pagerank
+
+WORKDIR /root/occlum/demos/python/benchmark/bfs
+RUN wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+RUN bash ./Miniconda3-latest-Linux-x86_64.sh -b -p ./miniconda 
+RUN ./miniconda/bin/conda create --prefix ./python-occlum -y python=3.8.10 networkx
+
+# WORKDIR /root/occlum/demos/python/benchmark/compress
+# RUN wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+# RUN bash ./Miniconda3-latest-Linux-x86_64.sh -b -p ./miniconda 
+# RUN ./miniconda/bin/conda create --prefix ./python-occlum -y python=3.8.10 minio
+
+WORKDIR /root/occlum/demos/python/benchmark/dynamic-html
+RUN wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+RUN bash ./Miniconda3-latest-Linux-x86_64.sh -b -p ./miniconda 
+RUN ./miniconda/bin/conda create --prefix ./python-occlum -y python=3.8.10 jinja2
+
+WORKDIR /root/occlum/demos/python/benchmark/mst
+RUN wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+RUN bash ./Miniconda3-latest-Linux-x86_64.sh -b -p ./miniconda 
+RUN ./miniconda/bin/conda create --prefix ./python-occlum -y python=3.8.10 networkx
+
+WORKDIR /root/occlum/demos/python/benchmark/dfs
+RUN wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+RUN bash ./Miniconda3-latest-Linux-x86_64.sh -b -p ./miniconda 
+RUN ./miniconda/bin/conda create --prefix ./python-occlum -y python=3.8.10 networkx
+
+WORKDIR /root/occlum/demos/python/benchmark/pagerank
+RUN wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+RUN bash ./Miniconda3-latest-Linux-x86_64.sh -b -p ./miniconda 
+RUN ./miniconda/bin/conda create --prefix ./python-occlum -y python=3.8.10 networkx scipy
 
 WORKDIR /actionProxy
 

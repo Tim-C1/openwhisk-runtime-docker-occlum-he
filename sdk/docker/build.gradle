@@ -15,7 +15,9 @@
  * limitations under the License.
  */
 
-ext.dockerImageName = 'example'
+ext.dockerImageName = 'openwhisk-test'
+ext.dockerImagePrefix = 'leave011'
+ext.dockerImageTag = 'occlum-he-py'
 
 apply from: '../../gradle/docker.gradle'
 distDocker.dependsOn ':core:actionProxy:distDocker'

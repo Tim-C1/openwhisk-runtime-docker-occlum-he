@@ -15,5 +15,6 @@
  * limitations under the License.
  */
 
-ext.dockerImageName = 'dockerskeleton'
+ext.dockerImageName = 'openwhisk-test'
+ext.dockerImagePrefix = 'leave011'
 apply from: '../../gradle/docker.gradle'

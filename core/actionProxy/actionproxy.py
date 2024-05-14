@@ -177,6 +177,7 @@ class ActionRunner:
             lastLine = o[lastNewLine+1:].strip()
             # emit the rest as logs to stdout (including last new line)
             sys.stdout.write(o[:lastNewLine+1])
+            sys.stdout.write(e)
         else:
             # either o is empty or it is the result string
             lastLine = o.strip()

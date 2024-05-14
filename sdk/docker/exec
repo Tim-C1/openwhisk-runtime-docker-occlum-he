@@ -1,0 +1,5 @@
+#!/bin/bash
+target=$1
+cd /root/occlum/demos/python/benchmark/${target}
+bash ./install_python_with_conda.sh
+bash ./run_python_on_occlum.sh
